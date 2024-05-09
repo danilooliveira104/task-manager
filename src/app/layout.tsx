@@ -1,5 +1,5 @@
 import './globals.css'
-import Header from './components/Header'
+import Header from './components/Header/Header'
 import { Inter } from 'next/font/google'
 
 // If loading a variable font, you don't need to specify the font weight
@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} box-border`}>
         <Header />
         {children}
       </body>

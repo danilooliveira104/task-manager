@@ -1,5 +1,5 @@
 {
-  "name": "todo-maneger",
+  "name": "task-maneger",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "next": "14.2.3",
     "react": "^18",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18"
   },
   "devDependencies": {
