@@ -15,7 +15,7 @@ export default function Home() {
           Welcome to task manager
         </span>
         <Link
-          href="/dashboard"
+          href="/pages/dashboard"
           className="shadow px-6 py-4 w-fit bg-white text-default text-xl rounded-md font-medium"
         >
           Dashboard

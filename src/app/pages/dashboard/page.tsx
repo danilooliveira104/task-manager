@@ -1,8 +1,8 @@
 'use client'
-import useTask from '../hooks/useTask'
-import TaskList from '../components/TaskList/TaskList'
+import useTask from '../../hooks/useTask'
+import TaskList from '../../components/TaskList/TaskList'
 import { useState } from 'react'
-import AddOrEditModal from '../components/AddOrEditModal/AddOrEditModal'
+import AddOrEditModal from '../../components/AddOrEditModal/AddOrEditModal'
 
 export default function Dashboard() {
   const { listTask } = useTask()
@@ -14,7 +14,6 @@ export default function Dashboard() {
       <AddOrEditModal
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
-        action={'add'}
       />
 
       <div className="p-8 bg-light-gray h-screen-header overflow-hidden">

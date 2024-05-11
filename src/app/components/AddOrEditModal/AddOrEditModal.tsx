@@ -1,8 +1,12 @@
-import { useState } from 'react'
-import Modal from '../Modal/Modal'
-import StatusTask from '../StatusTask/StatusTask'
-import UserAvatar from '../UseAvatar/UseAvatar'
+import useTask from '@/app/hooks/useTask'
+import Modal from '@/app/components/Modal/Modal'
+import StatusTask from '@/app/components/StatusTask/StatusTask'
 import { useForm } from 'react-hook-form'
+import { ItemTaskProps } from '@/app/types/types'
+import generateIdTask from '@/app/utils/generateIdTask'
+import { useEffect } from 'react'
+import useUsers from '@/app/hooks/useUsers'
+import Avatar from '@/app/components/Avatar/Avatar'
 
 interface AddOrEditModalProps {
   modalIsOpen: boolean
@@ -10,10 +14,10 @@ interface AddOrEditModalProps {
   id?: number
 }
 
-interface TaskProps {
-  responsible: number
-  status: boolean | string
-  objective: string
+interface ItemTaskFormProps {
+  todo: string
+  completed: boolean | string
+  userId: number | string
 }
 
 export default function AddOrEditModal({
@@ -21,26 +25,52 @@ export default function AddOrEditModal({
   setModalIsOpen,
   id,
 }: AddOrEditModalProps) {
-  const initialTaskState: TaskProps = {
-    responsible: 0,
-    status: false,
-    objective: '',
-  }
-
-  const { register, handleSubmit, watch, reset } = useForm<TaskProps>()
-  const [task, setTask] = useState<TaskProps>(initialTaskState)
+  const { register, handleSubmit, watch, reset, setValue } =
+    useForm<ItemTaskFormProps>()
+  const { listTask, addTask, editTask } = useTask()
+  const { listUsers } = useUsers()
 
   const showTask = {
-    status: watch('status') === 'true',
-    objective: watch('objective'),
-    responsible: watch('responsible'),
+    completed: watch('completed'),
+    todo: watch('todo'),
+    userId: watch('userId'),
   }
 
-  function handleFormTask(data: TaskProps) {
-    setTask(data)
-    localStorage.setItem('teste', JSON.stringify(data))
+  function handleFormTask(data: ItemTaskFormProps) {
+    const { todo, completed, userId } = data
+    const task: ItemTaskProps = {
+      id: id || generateIdTask(listTask),
+      completed: completed === 'true',
+      todo,
+      userId: Number(userId),
+    }
+
+    if (id) {
+      editTask({ ...task })
+    } else {
+      addTask({ ...task })
+    }
     reset()
+    setModalIsOpen(false)
   }
+
+  const fillingInputForEditing = () => {
+    if (id) {
+      const taskToEdit = listTask.find(
+        (ItemTaskProps: ItemTaskProps) => ItemTaskProps.id === id,
+      )
+      setValue('completed', taskToEdit?.completed ? 'true' : 'false')
+      setValue('todo', taskToEdit?.todo ? taskToEdit?.todo : '')
+      setValue('userId', taskToEdit?.userId ? taskToEdit?.userId : '0')
+    }
+  }
+
+  useEffect(() => {
+    console.log(listUsers)
+
+    fillingInputForEditing()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalIsOpen === true])
 
   return (
     <Modal
@@ -58,15 +88,22 @@ export default function AddOrEditModal({
             <p className="p-1 bg-default text-white roundedfont-semibold text-sm rounded-lg">
               Task ID: {id}
             </p>
-            <StatusTask status={showTask.status}></StatusTask>
+            <StatusTask status={showTask.completed === 'true'}></StatusTask>
           </div>
 
-          <p className="my-4 text-default">{showTask.objective}</p>
+          <p className="my-4 text-default">{showTask.todo}</p>
 
           <div className="flex justify-between items-center">
-            <UserAvatar id={showTask.responsible} />
+            <Avatar
+              showName={true}
+              id={
+                typeof showTask.userId === 'string'
+                  ? parseInt(showTask.userId)
+                  : showTask.userId
+              }
+            />
             <p className="bg-default text-white p-1 px-2 text-sm rounded-lg">
-              {id ? 'Editing task' : 'Adding task'}
+              Preview Task
             </p>
           </div>
         </div>
@@ -76,13 +113,17 @@ export default function AddOrEditModal({
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Responsible
             </label>
-            <input
+            <select
+              id="status"
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
-              id="responsible"
-              type="number"
-              placeholder="Write here"
-              {...register('responsible', { required: true })}
-            />
+              {...register('userId', { required: true })}
+            >
+              {listUsers.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.firstName} {user.lastName}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -91,12 +132,10 @@ export default function AddOrEditModal({
             <select
               id="status"
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
-              defaultValue={'default'}
-              {...register('status', { required: true })}
+              {...register('completed', { required: true })}
             >
-              <option value="default">Choose a status</option>
-              <option value={`${true}`}>Completed</option>
-              <option value={`${false}`}>Not Completed</option>
+              <option value="true">Completed</option>
+              <option value="false">Not Completed</option>
             </select>
           </div>
           <div className="mb-4">
@@ -107,7 +146,7 @@ export default function AddOrEditModal({
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
               id="objective"
               placeholder="Write here"
-              {...register('objective', { required: true })}
+              {...register('todo', { required: true })}
             />
           </div>
           <button
@@ -119,7 +158,7 @@ export default function AddOrEditModal({
               alt=""
               className="pr-1 w-6"
             />
-            <span className="capitalize">{id ? `edit` : 'add'} task</span>
+            <span className="capitalize">Confirm {id ? `edit` : 'add'}</span>
           </button>
         </form>
       </div>
