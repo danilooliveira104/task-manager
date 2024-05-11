@@ -1,56 +1,43 @@
-'use client'
-import { useState } from 'react'
-import Modal from '../Modal/Modal'
-
 interface ButtonActionProps {
   id: number
-  view?: boolean
+  handleClick: (click: boolean) => void
+  getId: (id: number) => void
+  getAction: (action: 'edit' | 'delete') => void
 }
 
-export default function ButtonAction({ id, view = true }: ButtonActionProps) {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
-
+export default function ButtonAction({
+  id,
+  handleClick,
+  getAction,
+  getId,
+}: ButtonActionProps) {
   return (
     <div>
-      <Modal
-        title="Modal teste"
-        isDrawer={true}
-        isOpen={modalIsOpen}
-        setIsOpen={setModalIsOpen}
+      <button
+        className="pr-2"
+        onClick={() => {
+          getId(id)
+          handleClick(true)
+          getAction('edit')
+        }}
       >
-        <h1>Olá, sou o conteúdo do modal</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-          fermentum, elit eget tincidunt pharetra, est felis luctus enim, sit
-          amet posuere erat libero vitae ante.
-        </p>
-        <button onClick={() => setModalIsOpen(false)}>Fechar</button>
-      </Modal>
-
-      {view ? (
-        <button
-          className="pr-2"
-          task-id={id}
-          onClick={() => setModalIsOpen(true)}
-        >
-          <img
-            className="lg:w-5 w-7"
-            src="/image/icon-view.png"
-            alt="olho"
-          ></img>
-        </button>
-      ) : null}
-      <button className="pr-2">
         <img
           className="lg:w-5 w-7"
-          src="/image/icon-edit.png"
+          src={`/image/icon-edit.png`}
           alt="lapis de edição"
         ></img>
       </button>
-      <button className="pr-2">
+      <button
+        className="pr-2"
+        onClick={() => {
+          getId(id)
+          handleClick(true)
+          getAction('delete')
+        }}
+      >
         <img
           className="lg:w-5 w-7"
-          src="/image/icon-delete.png"
+          src={`/image/icon-delete.png`}
           alt="lixeira"
         ></img>
       </button>
