@@ -20,7 +20,9 @@ export default function Avatar({ id, showName = false }: AvatarProps) {
         width="40px"
       />
       {showName && (
-        <div className="text-white bg-default p-2 px-1 rounded-lg w-auto text-sm">
+        <div
+          className={`text-white ${user?.firstName ? 'bg-default' : ''} p-2 px-1 rounded-lg w-auto text-sm`}
+        >
           {user?.firstName} {user?.lastName}
         </div>
       )}

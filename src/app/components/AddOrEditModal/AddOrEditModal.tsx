@@ -116,8 +116,14 @@ export default function AddOrEditModal({
             <select
               id="status"
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
-              {...register('userId', { required: true })}
+              {...register('userId', {
+                required: true,
+                validate: (value) => value !== '0',
+              })}
             >
+              <option key={0} value={0}>
+                Choose responsible
+              </option>
               {listUsers.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.firstName} {user.lastName}
