@@ -1,4 +1,4 @@
-import useUsers from '@/app/hooks/useUsers'
+import useUsers from '@hooks/useUsers'
 
 interface AvatarProps {
   id: number

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { ItemTaskProps } from '@/app/types/types'
+import { ItemTaskProps } from '@type/types'
 
 interface UseTaskProps {
   listTask: ItemTaskProps[]

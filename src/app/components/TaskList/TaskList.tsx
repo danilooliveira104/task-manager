@@ -1,13 +1,13 @@
-import Avatar from '../Avatar/Avatar'
-import ButtonAction from '../ButtonAction/ButtonAction'
-import StatusTask from '../StatusTask/StatusTask'
+import Avatar from '@components/Avatar/Avatar'
+import ButtonAction from '@components/ButtonAction/ButtonAction'
+import StatusTask from '@components/StatusTask/StatusTask'
 import { isMobile } from 'react-device-detect'
-import KebabMenu from '../KebabMenu/KebabMenu'
-import AddOrEditModal from '../AddOrEditModal/AddOrEditModal'
+import KebabMenu from '@components/KebabMenu/KebabMenu'
+import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
 import { useState } from 'react'
-import Modal from '../Modal/Modal'
-import { ItemTaskProps } from '@/app/types/types'
-import useTask from '@/app/hooks/useTask'
+import Modal from '@components/Modal/Modal'
+import { ItemTaskProps } from '@type/types'
+import useTask from '@hooks/useTask'
 
 interface TaskListProps {
   items: ItemTaskProps[]

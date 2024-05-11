@@ -1,8 +1,8 @@
 'use client'
 import useTask from '../../hooks/useTask'
-import TaskList from '../../components/TaskList/TaskList'
+import TaskList from '../.@components//TaskList/TaskList'
 import { useState } from 'react'
-import AddOrEditModal from '../../components/AddOrEditModal/AddOrEditModal'
+import AddOrEditModal from '../.@components//AddOrEditModal/AddOrEditModal'
 
 export default function Dashboard() {
   const { listTask } = useTask()

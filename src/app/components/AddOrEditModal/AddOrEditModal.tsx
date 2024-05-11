@@ -1,12 +1,12 @@
-import useTask from '@/app/hooks/useTask'
-import Modal from '@/app/components/Modal/Modal'
-import StatusTask from '@/app/components/StatusTask/StatusTask'
+import useTask from '@hooks/useTask'
+import Modal from '@components/Modal/Modal'
+import StatusTask from '@components/StatusTask/StatusTask'
 import { useForm } from 'react-hook-form'
-import { ItemTaskProps } from '@/app/types/types'
-import generateIdTask from '@/app/utils/generateIdTask'
+import { ItemTaskProps } from '@type/types'
+import generateIdTask from '@utils/generateIdTask'
 import { useEffect } from 'react'
-import useUsers from '@/app/hooks/useUsers'
-import Avatar from '@/app/components/Avatar/Avatar'
+import useUsers from '@hooks/useUsers'
+import Avatar from '@components/Avatar/Avatar'
 
 interface AddOrEditModalProps {
   modalIsOpen: boolean
@@ -66,10 +66,7 @@ export default function AddOrEditModal({
   }
 
   useEffect(() => {
-    console.log(listUsers)
-
     fillingInputForEditing()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalIsOpen === true])
 
   return (
@@ -103,7 +100,7 @@ export default function AddOrEditModal({
               }
             />
             <p className="bg-default text-white p-1 px-2 text-sm rounded-lg">
-              Preview Task
+              Task Preview
             </p>
           </div>
         </div>
