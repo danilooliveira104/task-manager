@@ -25,7 +25,7 @@ export default function Dashboard() {
             onClick={() => setModalIsOpen(true)}
             className="shadow px-4 py-2 w-fit text-white bg-default text-sm rounded-md font-medium flex items-center"
           >
-            <img src="/image/icon-add.png" alt="" className="pr-1 w-6" />
+            <img src="/images/icon-add.png" alt="" className="pr-1 w-6" />
             Add new task
           </button>
         </div>

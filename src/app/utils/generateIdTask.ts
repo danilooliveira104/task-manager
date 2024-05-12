@@ -1,4 +1,4 @@
-import { ItemTaskProps } from '@/app/types/types'
+import { ItemTaskProps } from '@models/types'
 
 export default function generateIdTask(listTask: ItemTaskProps[]) {
   const listIds = listTask.map((item: ItemTaskProps) => item.id)

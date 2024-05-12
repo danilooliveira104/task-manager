@@ -31,8 +31,8 @@
       "@hooks/*": [
         "./src/app/hooks/*"
       ],
-      "@type/*": [
-        "./src/app/types/*"
+      "@models/*": [
+        "./src/app/models/*"
       ],
       "@utils/*": [
         "./src/app/utils/*"

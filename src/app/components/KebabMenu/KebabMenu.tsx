@@ -31,7 +31,7 @@ export default function KebabMenu({
           aria-expanded="true"
         >
           <img
-            src="../../image/icon-kebab-menu.png"
+            src="../../images/icon-kebab-menu.png"
             alt="menu"
             width="30px"
           ></img>
@@ -57,7 +57,7 @@ export default function KebabMenu({
               }}
             >
               <img
-                src="../../image/icon-edit.png"
+                src="../../images/icon-edit.png"
                 alt="Icon"
                 className="mr-2 w-5"
               />{' '}
@@ -74,7 +74,7 @@ export default function KebabMenu({
               }}
             >
               <img
-                src="../../image/icon-delete.png"
+                src="../../images/icon-delete.png"
                 alt="Icon"
                 className="mr-2 w-5"
               />{' '}

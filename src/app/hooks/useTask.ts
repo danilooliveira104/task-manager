@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { ItemTaskProps } from '@type/types'
+import { ItemTaskProps } from '@models/types'
 
 interface UseTaskProps {
   listTask: ItemTaskProps[]

@@ -23,7 +23,7 @@ export default function ButtonAction({
       >
         <img
           className="lg:w-5 w-7"
-          src={`/image/icon-edit.png`}
+          src={`/images/icon-edit.png`}
           alt="lapis de edição"
         ></img>
       </button>
@@ -37,7 +37,7 @@ export default function ButtonAction({
       >
         <img
           className="lg:w-5 w-7"
-          src={`/image/icon-delete.png`}
+          src={`/images/icon-delete.png`}
           alt="lixeira"
         ></img>
       </button>

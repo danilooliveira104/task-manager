@@ -2,7 +2,7 @@ import useTask from '@hooks/useTask'
 import Modal from '@components/Modal/Modal'
 import StatusTask from '@components/StatusTask/StatusTask'
 import { useForm } from 'react-hook-form'
-import { ItemTaskProps } from '@type/types'
+import { ItemTaskProps } from '@models/types'
 import generateIdTask from '@utils/generateIdTask'
 import { useEffect } from 'react'
 import useUsers from '@hooks/useUsers'
@@ -157,7 +157,7 @@ export default function AddOrEditModal({
             type="submit"
           >
             <img
-              src={`/image/icon-${id ? `edit-white` : 'add'}.png`}
+              src={`/images/icon-${id ? `edit-white` : 'add'}.png`}
               alt=""
               className="pr-1 w-6"
             />

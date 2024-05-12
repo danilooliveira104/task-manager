@@ -6,7 +6,7 @@ export default function Home() {
       <div className="lg:w-2/4 h-screen-header px-6 flex justify-center items-center">
         <img
           className="w-2/3"
-          src="/image/welcome.svg"
+          src="/images/welcome.svg"
           alt="people handling tasks"
         />
       </div>

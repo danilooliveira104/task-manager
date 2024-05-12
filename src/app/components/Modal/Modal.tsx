@@ -26,7 +26,7 @@ export default function Modal({
               </span>
               <button onClick={() => setIsOpen(false)} className="relative p-2">
                 <img
-                  src="/image/icon-close-white.png"
+                  src="/images/icon-close-white.png"
                   alt="circle with X"
                   width="40px"
                 ></img>

@@ -6,7 +6,7 @@ import KebabMenu from '@components/KebabMenu/KebabMenu'
 import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
 import { useState } from 'react'
 import Modal from '@components/Modal/Modal'
-import { ItemTaskProps } from '@type/types'
+import { ItemTaskProps } from '@models/types'
 import useTask from '@hooks/useTask'
 
 interface TaskListProps {
@@ -64,7 +64,7 @@ export default function TaskList({ items }: TaskListProps) {
             <tr className="bg-default text-white">
               <th className="text-left p-2 rounded-l-xl">
                 <img
-                  src="/image/icon-task.png"
+                  src="/images/icon-task.png"
                   alt="caderneta de tarefas"
                   width="20px"
                 ></img>
