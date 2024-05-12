@@ -1,8 +1,8 @@
 'use client'
-import useTask from '../hooks/useTask'
-import TaskList from '../components/TaskList/TaskList'
-import Modal from '../components/Modal/Modal'
+import useTask from '@hooks/useTask'
+import TaskList from '@components/TaskList/TaskList'
 import { useState } from 'react'
+import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
 
 export default function Dashboard() {
   const { listTask } = useTask()
@@ -11,14 +11,10 @@ export default function Dashboard() {
 
   return (
     <>
-      <Modal
-        title="Add new task"
-        isDrawer={true}
-        isOpen={modalIsOpen}
-        setIsOpen={setModalIsOpen}
-      >
-        <h1>Olá, sou o conteúdo do modal</h1>
-      </Modal>
+      <AddOrEditModal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+      />
 
       <div className="p-8 bg-light-gray h-screen-header overflow-hidden">
         <div className="flex justify-between items-center">
@@ -29,7 +25,7 @@ export default function Dashboard() {
             onClick={() => setModalIsOpen(true)}
             className="shadow px-4 py-2 w-fit text-white bg-default text-sm rounded-md font-medium flex items-center"
           >
-            <img src="/image/icon-add.png" alt="" className="pr-1 w-6" />
+            <img src="/images/icon-add.png" alt="" className="pr-1 w-6" />
             Add new task
           </button>
         </div>

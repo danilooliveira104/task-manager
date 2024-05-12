@@ -1,36 +1,77 @@
-import UserAvatar from '../UseAvatar/UseAvatar'
-import ButtonAction from '../ButtonAction/ButtonAction'
-import StatusTask from '../StatusTask/StatusTask'
+import Avatar from '@components/Avatar/Avatar'
+import ButtonAction from '@components/ButtonAction/ButtonAction'
+import StatusTask from '@components/StatusTask/StatusTask'
 import { isMobile } from 'react-device-detect'
-
-interface Item {
-  id: number
-  task: string
-  completed: boolean
-  userId: number
-}
+import KebabMenu from '@components/KebabMenu/KebabMenu'
+import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
+import { useState } from 'react'
+import Modal from '@components/Modal/Modal'
+import { ItemTaskProps } from '@models/types'
+import useTask from '@hooks/useTask'
 
 interface TaskListProps {
-  items: Item[]
+  items: ItemTaskProps[]
 }
 
 export default function TaskList({ items }: TaskListProps) {
+  const { removeTask } = useTask()
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
+  const [id, setId] = useState<number>(0)
+  const [action, setAction] = useState<'edit' | 'delete'>('edit')
+
+  const handleDelete = (id: number) => {
+    removeTask(id)
+    setModalIsOpen(false)
+  }
+
   return (
     <div className="p-8 mt-4 shadow-xl rounded-xl bg-white overflow-y-scroll lg:overflow-y-auto max-h-2/9/10">
-      {!isMobile ? (
+      <AddOrEditModal
+        modalIsOpen={action !== 'delete' ? modalIsOpen : false}
+        setModalIsOpen={setModalIsOpen}
+        id={id}
+      />
+
+      <Modal
+        title="Confirm Deletion"
+        isOpen={action === 'delete' ? modalIsOpen : false}
+        setIsOpen={setModalIsOpen}
+      >
+        <p className="mb-4">Are you sure you want to delete this item?</p>
+        <div className="flex justify-start lg:justify-end pt-4">
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-600"
+            onClick={() => setModalIsOpen(false)}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+            onClick={() => {
+              handleDelete(id)
+            }}
+          >
+            Confirm
+          </button>
+        </div>
+      </Modal>
+
+      {items?.length === 0 ? (
+        <p className="text-center text-default">No tasks found</p>
+      ) : !isMobile ? (
         <table className="w-full">
           <thead>
             <tr className="bg-default text-white">
               <th className="text-left p-2 rounded-l-xl">
                 <img
-                  src="/image/icon-task.png"
+                  src="/images/icon-task.png"
                   alt="caderneta de tarefas"
                   width="20px"
                 ></img>
               </th>
               <th className="text-left p-2">Objective</th>
               <th className="text-center p-2">Status</th>
-              <th className="text-center p-2">Assignee</th>
+              <th className="text-center p-2">Responsible</th>
               <th className="text-center p-2 rounded-r-xl">Action</th>
             </tr>
           </thead>
@@ -39,15 +80,20 @@ export default function TaskList({ items }: TaskListProps) {
               return (
                 <tr key={item.id} className="border-b">
                   <td className="p-2">{item.id}</td>
-                  <td className="p-2">{item.task}</td>
+                  <td className="p-2">{item.todo}</td>
                   <td className="p-2 text-center">
                     <StatusTask status={item.completed}></StatusTask>
                   </td>
                   <td className="p-2 flex justify-center items-center">
-                    <UserAvatar id={item.userId} />
+                    <Avatar id={item.userId} />
                   </td>
                   <td className="p-2 text-center">
-                    <ButtonAction id={item.id} />
+                    <ButtonAction
+                      id={item.id}
+                      handleClick={(isOpen) => setModalIsOpen(isOpen)}
+                      getId={(id) => setId(id)}
+                      getAction={(action) => setAction(action)}
+                    />
                   </td>
                 </tr>
               )
@@ -59,21 +105,25 @@ export default function TaskList({ items }: TaskListProps) {
           return (
             <div
               key={item.id}
-              className="mt-4 shadow-md rounded-xl bg-white p-4 border-gray-200 border"
+              className="mt-4 shadow-md rounded-xl bg-default p-4 border-gray-200 border"
             >
               <div className="flex justify-between items-center">
-                <p className="p-1 bg-default rounded text-white font-semibold text-sm">
-                  {' '}
+                <p className="p-1 text-default rounded bg-white font-semibold text-sm">
                   Task ID: {item.id}
                 </p>
                 <StatusTask status={item.completed}></StatusTask>
               </div>
 
-              <p className="my-4">{item.task}</p>
+              <p className="my-4 text-white">{item.todo}</p>
 
               <div className="flex justify-between items-center">
-                <UserAvatar id={item.userId} />
-                <ButtonAction id={item.id} />
+                <Avatar id={item.userId} showName={true} />
+                <KebabMenu
+                  id={item.id}
+                  handleClick={(isOpen) => setModalIsOpen(isOpen)}
+                  getId={(id) => setId(id)}
+                  getAction={(action) => setAction(action)}
+                />
               </div>
             </div>
           )
