@@ -10,8 +10,6 @@ const config: Config = {
     extend: {
       colors: {
         default: '#9B82F5',
-        'light-gray': '#F1F3FB',
-        'green-staus': '#2AC769',
       },
       height: {
         'screen-header': 'calc(100vh - 56px)',

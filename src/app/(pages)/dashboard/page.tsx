@@ -1,5 +1,5 @@
 'use client'
-import useTask from '@hooks/useTask'
+import useTask from '@/app/hooks/useTask/useTask'
 import TaskList from '@components/TaskList/TaskList'
 import { useState } from 'react'
 import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
@@ -16,7 +16,7 @@ export default function Dashboard() {
         setModalIsOpen={setModalIsOpen}
       />
 
-      <div className="p-8 bg-light-gray h-screen-header overflow-hidden">
+      <div className="p-8 bg-slate-100 h-screen-header overflow-hidden">
         <div className="flex justify-between items-center">
           <h1 className="lg:text-3xl text-2xl font-bold text-gray-800">
             Dashboard

@@ -22,6 +22,7 @@ export default function Avatar({ id, showName = false }: AvatarProps) {
       {showName && (
         <div
           className={`text-white ${user?.firstName ? 'bg-default' : ''} p-2 px-1 rounded-lg w-auto text-sm`}
+          data-testid="user-name"
         >
           {user?.firstName} {user?.lastName}
         </div>

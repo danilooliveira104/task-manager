@@ -7,7 +7,7 @@ import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
 import { useState } from 'react'
 import Modal from '@components/Modal/Modal'
 import { ItemTaskProps } from '@models/types'
-import useTask from '@hooks/useTask'
+import useTask from '@/app/hooks/useTask/useTask'
 
 interface TaskListProps {
   items: ItemTaskProps[]
