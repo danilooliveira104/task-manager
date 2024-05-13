@@ -1,5 +1,5 @@
 <h1 style="display: flex; align-itens: center"> 
-  <img witdth="60px" alt="icon dashboard" src="./public/images/logo-icon.svg" width="20px"/> 
+  <img alt="icon dashboard" src="./public/images/logo-icon.svg" width="60px"/> 
   Task Maneger
 </h1>
 
