@@ -1,24 +1,25 @@
 interface ButtonActionProps {
   id: number
   handleClick: (click: boolean) => void
-  getId: (id: number) => void
-  getAction: (action: 'edit' | 'delete') => void
+  setId: (id: number) => void
+  setAction: (action: 'edit' | 'delete') => void
 }
 
 export default function ButtonAction({
   id,
   handleClick,
-  getAction,
-  getId,
+  setAction,
+  setId,
 }: ButtonActionProps) {
   return (
     <div>
       <button
+        data-testid="button-edit"
         className="pr-2"
         onClick={() => {
-          getId(id)
+          setId(id)
           handleClick(true)
-          getAction('edit')
+          setAction('edit')
         }}
       >
         <img
@@ -28,11 +29,12 @@ export default function ButtonAction({
         ></img>
       </button>
       <button
+        data-testid="button-delete"
         className="pr-2"
         onClick={() => {
-          getId(id)
+          setId(id)
           handleClick(true)
-          getAction('delete')
+          setAction('delete')
         }}
       >
         <img

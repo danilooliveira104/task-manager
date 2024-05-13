@@ -91,8 +91,8 @@ export default function TaskList({ items }: TaskListProps) {
                     <ButtonAction
                       id={item.id}
                       handleClick={(isOpen) => setModalIsOpen(isOpen)}
-                      getId={(id) => setId(id)}
-                      getAction={(action) => setAction(action)}
+                      setId={(id) => setId(id)}
+                      setAction={(action) => setAction(action)}
                     />
                   </td>
                 </tr>
@@ -121,8 +121,8 @@ export default function TaskList({ items }: TaskListProps) {
                 <KebabMenu
                   id={item.id}
                   handleClick={(isOpen) => setModalIsOpen(isOpen)}
-                  getId={(id) => setId(id)}
-                  getAction={(action) => setAction(action)}
+                  setId={(id) => setId(id)}
+                  setAction={(action) => setAction(action)}
                 />
               </div>
             </div>

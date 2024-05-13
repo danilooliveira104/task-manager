@@ -1,8 +1,8 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import { render, fireEvent } from '@testing-library/react'
+import KebabMenu from './KebabMenu'
 import { beforeEach } from 'node:test'
-import ButtonAction from './ButtonAction'
 
 describe('KebabMenu', () => {
   const handleClick = jest.fn()
@@ -15,13 +15,16 @@ describe('KebabMenu', () => {
 
   it('should call correct functions on button-edit click', () => {
     const { getByTestId } = render(
-      <ButtonAction
+      <KebabMenu
         id={1}
         handleClick={handleClick}
         setId={setId}
         setAction={setAction}
       />,
     )
+
+    const buttonMenu = getByTestId('options-menu')
+    fireEvent.click(buttonMenu)
 
     const buttonEdit = getByTestId('button-edit')
     fireEvent.click(buttonEdit)
@@ -33,13 +36,16 @@ describe('KebabMenu', () => {
 
   it('should call correct functions on button-delete click', () => {
     const { getByTestId } = render(
-      <ButtonAction
+      <KebabMenu
         id={1}
         handleClick={handleClick}
         setId={setId}
         setAction={setAction}
       />,
     )
+
+    const buttonMenu = getByTestId('options-menu')
+    fireEvent.click(buttonMenu)
 
     const buttonDelete = getByTestId('button-delete')
     fireEvent.click(buttonDelete)

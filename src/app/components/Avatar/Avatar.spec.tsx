@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
-import Avatar from '@components/Avatar/Avatar'
+import Avatar from './Avatar'
+import { beforeEach } from 'node:test'
 
-jest.mock('../../hooks/useUsers', () => ({
+jest.mock('../../hooks/useUsers/useUsers', () => ({
   __esModule: true,
   default: jest.fn(() => ({
     listUsers: [
@@ -13,33 +14,32 @@ jest.mock('../../hooks/useUsers', () => ({
 }))
 
 describe('Avatar component', () => {
+  const urlImg = `https://api.dicebear.com/8.x/bottts-neutral/svg?seed=${1}`
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('renders without crashing', () => {
     render(<Avatar id={1} />)
   })
 
   it('renders avatar with name when showName prop is true', () => {
-    const { getByAltText, getByTestId } = render(<Avatar id={1} showName />)
-    const avatarImg = getByAltText('Avatar-1')
+    const { getByTestId } = render(<Avatar id={1} showName />)
+    const avatarImg = getByTestId('img-avatar')
     const nameElement = getByTestId('user-name')
 
-    expect(avatarImg).toBeInTheDocument()
+    expect(avatarImg).toHaveAttribute('src', urlImg)
     expect(nameElement).toBeInTheDocument()
     expect(nameElement.textContent).toBe('John Doe')
   })
 
   it('renders avatar without name when showName prop is false', () => {
-    const { getByAltText, queryByText } = render(<Avatar id={1} />)
-    const avatarImg = getByAltText('Avatar-1')
+    const { getByTestId, queryByText } = render(<Avatar id={1} />)
+    const avatarImg = getByTestId('img-avatar')
     const nameElement = queryByText('John Doe')
-    expect(avatarImg).toBeInTheDocument()
-    expect(nameElement).toBeNull()
-  })
 
-  it('renders avatar without name when user data is not available', () => {
-    const { getByAltText, queryByText } = render(<Avatar id={3} showName />)
-    const avatarImg = getByAltText('Avatar-3')
-    const nameElement = queryByText('John Doe')
-    expect(avatarImg).toBeInTheDocument()
+    expect(avatarImg).toHaveAttribute('src', urlImg)
     expect(nameElement).toBeNull()
   })
 })

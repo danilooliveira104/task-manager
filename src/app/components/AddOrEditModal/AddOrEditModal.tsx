@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { ItemTaskProps } from '@models/types'
 import generateIdTask from '@utils/generateIdTask'
 import { useEffect } from 'react'
-import useUsers from '@hooks/useUsers'
+import useUsers from '@hooks/useUsers/useUsers'
 import Avatar from '@components/Avatar/Avatar'
 
 interface AddOrEditModalProps {
