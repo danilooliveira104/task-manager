@@ -25,6 +25,7 @@ A responsive web application for task management, offering an intuitive dashboar
 The objective of this project is developer a modern resposive web app for tasks management. With an user-friendly interaface, where the users would can to view, add, edit and delete task efienetly
 
 ## 🔨 Features
+- [x] View tasks
 - [x] Add task
 - [x] Edit task
 - [x] Delete task
