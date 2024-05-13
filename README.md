@@ -1,4 +1,7 @@
-# <img alt="icon dashboard" src="./public/images/logo-icon.svg" /> Task Maneger
+<h1 style="display: flex; align-itens: center"> 
+  <img witdth="60px" alt="icon dashboard" src="./public/images/logo-icon.svg" width="20px"/> 
+  Task Maneger
+</h1>
 
 A responsive web application for task management, offering an intuitive dashboard with features for adding, editing and deleting tasks
 
