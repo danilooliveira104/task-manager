@@ -3,15 +3,15 @@ import React, { useState } from 'react'
 interface KebabMenuProps {
   id: number
   handleClick: (click: boolean) => void
-  getId: (id: number) => void
-  getAction: (action: 'edit' | 'delete') => void
+  setId: (id: number) => void
+  setAction: (action: 'edit' | 'delete') => void
 }
 
 export default function KebabMenu({
   id,
   handleClick,
-  getAction,
-  getId,
+  setAction,
+  setId,
 }: KebabMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -26,7 +26,7 @@ export default function KebabMenu({
           type="button"
           onClick={toggleMenu}
           className=""
-          id="options-menu"
+          data-testid="options-menu"
           aria-haspopup="true"
           aria-expanded="true"
         >
@@ -47,12 +47,13 @@ export default function KebabMenu({
         >
           <div className="py-1" role="none">
             <button
+              data-testid="button-edit"
               className="flex w-full text-left px-4 py-3 text-sm text-gray-700"
               role="menuitem"
               onClick={() => {
-                getId(id)
+                setId(id)
                 handleClick(true)
-                getAction('edit')
+                setAction('edit')
                 toggleMenu()
               }}
             >
@@ -64,12 +65,13 @@ export default function KebabMenu({
               <span className="font-medium">Edit</span>
             </button>
             <button
+              data-testid="button-delete"
               className="flex w-full text-left px-4 py-3 text-sm text-gray-700"
               role="menuitem"
               onClick={() => {
-                getId(id)
+                setId(id)
                 handleClick(true)
-                getAction('delete')
+                setAction('delete')
                 toggleMenu()
               }}
             >

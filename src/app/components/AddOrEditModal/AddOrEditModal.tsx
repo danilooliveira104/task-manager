@@ -1,11 +1,11 @@
-import useTask from '@hooks/useTask'
+import useTask from '@hooks/useTask/useTask'
 import Modal from '@components/Modal/Modal'
 import StatusTask from '@components/StatusTask/StatusTask'
 import { useForm } from 'react-hook-form'
 import { ItemTaskProps } from '@models/types'
 import generateIdTask from '@utils/generateIdTask'
 import { useEffect } from 'react'
-import useUsers from '@hooks/useUsers'
+import useUsers from '@hooks/useUsers/useUsers'
 import Avatar from '@components/Avatar/Avatar'
 
 interface AddOrEditModalProps {
@@ -16,7 +16,7 @@ interface AddOrEditModalProps {
 
 interface ItemTaskFormProps {
   todo: string
-  completed: boolean | string
+  completed: number | string
   userId: number | string
 }
 
@@ -38,9 +38,10 @@ export default function AddOrEditModal({
 
   function handleFormTask(data: ItemTaskFormProps) {
     const { todo, completed, userId } = data
+
     const task: ItemTaskProps = {
       id: id || generateIdTask(listTask),
-      completed: completed === 'true',
+      completed: parseInt(completed as string),
       todo,
       userId: Number(userId),
     }
@@ -59,7 +60,7 @@ export default function AddOrEditModal({
       const taskToEdit = listTask.find(
         (ItemTaskProps: ItemTaskProps) => ItemTaskProps.id === id,
       )
-      setValue('completed', taskToEdit?.completed ? 'true' : 'false')
+      setValue('completed', taskToEdit?.completed as number)
       setValue('todo', taskToEdit?.todo ? taskToEdit?.todo : '')
       setValue('userId', taskToEdit?.userId ? taskToEdit?.userId : '0')
     }
@@ -85,14 +86,16 @@ export default function AddOrEditModal({
             <p className="p-1 bg-default text-white roundedfont-semibold text-sm rounded-lg">
               Task ID: {id}
             </p>
-            <StatusTask status={showTask.completed === 'true'}></StatusTask>
+            <StatusTask
+              status={parseInt(showTask.completed as string)}
+            ></StatusTask>
           </div>
 
           <p className="my-4 text-default">{showTask.todo}</p>
 
           <div className="flex justify-between items-center">
             <Avatar
-              showName={true}
+              showName
               id={
                 typeof showTask.userId === 'string'
                   ? parseInt(showTask.userId)
@@ -137,8 +140,9 @@ export default function AddOrEditModal({
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
               {...register('completed', { required: true })}
             >
-              <option value="true">Completed</option>
-              <option value="false">Not Completed</option>
+              <option value="0">Pending</option>
+              <option value="1">In Progress</option>
+              <option value="2">Completed</option>
             </select>
           </div>
           <div className="mb-4">

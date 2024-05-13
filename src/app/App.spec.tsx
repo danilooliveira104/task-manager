@@ -4,7 +4,7 @@ import Home from './page'
 
 test('renders Welcome message', () => {
   render(<Home />)
-  const linkElement = screen.getByText(/Welcome to your personal task manager/i)
+  const linkElement = screen.getByText(/Welcome to task manager/i)
   expect(linkElement).toBeInTheDocument()
 })
 

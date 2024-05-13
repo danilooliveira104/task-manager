@@ -7,7 +7,7 @@ import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
 import { useState } from 'react'
 import Modal from '@components/Modal/Modal'
 import { ItemTaskProps } from '@models/types'
-import useTask from '@hooks/useTask'
+import useTask from '@/app/hooks/useTask/useTask'
 
 interface TaskListProps {
   items: ItemTaskProps[]
@@ -91,8 +91,8 @@ export default function TaskList({ items }: TaskListProps) {
                     <ButtonAction
                       id={item.id}
                       handleClick={(isOpen) => setModalIsOpen(isOpen)}
-                      getId={(id) => setId(id)}
-                      getAction={(action) => setAction(action)}
+                      setId={(id) => setId(id)}
+                      setAction={(action) => setAction(action)}
                     />
                   </td>
                 </tr>
@@ -121,8 +121,8 @@ export default function TaskList({ items }: TaskListProps) {
                 <KebabMenu
                   id={item.id}
                   handleClick={(isOpen) => setModalIsOpen(isOpen)}
-                  getId={(id) => setId(id)}
-                  getAction={(action) => setAction(action)}
+                  setId={(id) => setId(id)}
+                  setAction={(action) => setAction(action)}
                 />
               </div>
             </div>

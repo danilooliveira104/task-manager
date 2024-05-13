@@ -1,4 +1,4 @@
-import useUsers from '@hooks/useUsers'
+import useUsers from '@hooks/useUsers/useUsers'
 
 interface AvatarProps {
   id: number
@@ -14,6 +14,7 @@ export default function Avatar({ id, showName = false }: AvatarProps) {
   return (
     <div className="flex items-center">
       <img
+        data-testid="img-avatar"
         className="rounded-lg mr-2"
         src={avatarUrl}
         alt={`Avatar-${id}`}
@@ -22,6 +23,7 @@ export default function Avatar({ id, showName = false }: AvatarProps) {
       {showName && (
         <div
           className={`text-white ${user?.firstName ? 'bg-default' : ''} p-2 px-1 rounded-lg w-auto text-sm`}
+          data-testid="user-name"
         >
           {user?.firstName} {user?.lastName}
         </div>
