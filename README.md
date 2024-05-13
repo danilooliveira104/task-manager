@@ -1,5 +1,5 @@
   <div align="center">
-    <img alt="icon dashboard" src="./public/images/logo-icon.svg" width="60px"/> 
+    <img alt="icon dashboard" src="./public/images/logo-icon.svg" width="100px"/> 
     <h1> 
       Task Maneger
     </h1>
