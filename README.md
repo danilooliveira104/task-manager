@@ -1,4 +1,10 @@
-# <img alt="icon dashboard" src="./public/images/logo-icon.svg" /> Task Maneger
+  <div align="center">
+    <img alt="icon dashboard" src="./public/images/logo-icon.svg" width="100px"/> 
+    <h1> 
+      Task Maneger
+    </h1>
+  </div>
+  
 
 A responsive web application for task management, offering an intuitive dashboard with features for adding, editing and deleting tasks
 
@@ -52,7 +58,7 @@ The objective of this project is developer a modern resposive web app for tasks 
 
 ```bash
 npm install
-# ou
+# or
 yarn install
 ```
 
@@ -60,7 +66,7 @@ yarn install
 
 ```bash
 npm run dev
-# ou
+# or
 yarn dev
 ```
 
@@ -68,14 +74,9 @@ yarn dev
 
 ```bash
 npm run test
-# ou
+# or
 yarn test
 ```
-
-
-## 📝 Licença
-
-
 
 ## 🙋 Author
 
