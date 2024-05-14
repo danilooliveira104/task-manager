@@ -4,7 +4,6 @@ import StatusTask from './StatusTask'
 
 describe('StatusTask', () => {
   it('should render the correct status text and color based on the status prop', () => {
-    // Render the component with different status props
     const { getByText } = render(<StatusTask status={0} />)
     expect(getByText('Pending')).toBeInTheDocument()
 

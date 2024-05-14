@@ -16,8 +16,8 @@ interface AddOrEditModalProps {
 
 interface ItemTaskFormProps {
   todo: string
-  completed: number | string
-  userId: number | string
+  completed: number
+  userId: number
 }
 
 export default function AddOrEditModal({
@@ -27,7 +27,7 @@ export default function AddOrEditModal({
 }: AddOrEditModalProps) {
   const { register, handleSubmit, watch, reset, setValue } =
     useForm<ItemTaskFormProps>()
-  const { listTask, addTask, editTask } = useTask()
+  const { listTasks, addTask, editTask } = useTask()
   const { listUsers } = useUsers()
 
   const showTask = {
@@ -40,10 +40,10 @@ export default function AddOrEditModal({
     const { todo, completed, userId } = data
 
     const task: ItemTaskProps = {
-      id: id || generateIdTask(listTask),
-      completed: parseInt(completed as string),
+      id: id || generateIdTask(listTasks),
+      completed,
       todo,
-      userId: Number(userId),
+      userId,
     }
 
     if (id) {
@@ -57,23 +57,25 @@ export default function AddOrEditModal({
 
   const fillingInputForEditing = () => {
     if (id) {
-      const taskToEdit = listTask.find(
+      const taskToEdit = listTasks?.find(
         (ItemTaskProps: ItemTaskProps) => ItemTaskProps.id === id,
       )
-      setValue('completed', taskToEdit?.completed as number)
+      setValue('completed', taskToEdit?.completed ? taskToEdit.completed : 0)
       setValue('todo', taskToEdit?.todo ? taskToEdit?.todo : '')
-      setValue('userId', taskToEdit?.userId ? taskToEdit?.userId : '0')
+      setValue('userId', taskToEdit?.userId ? taskToEdit?.userId : 0)
     }
   }
 
   useEffect(() => {
-    fillingInputForEditing()
-  }, [modalIsOpen === true])
+    if (modalIsOpen) {
+      return fillingInputForEditing()
+    }
+  }, [modalIsOpen])
 
   return (
     <Modal
       title={id ? 'Edit task' : 'Add new task'}
-      isDrawer={true}
+      isDrawer
       isOpen={modalIsOpen}
       setIsOpen={setModalIsOpen}
     >
@@ -86,29 +88,20 @@ export default function AddOrEditModal({
             <p className="p-1 bg-default text-white roundedfont-semibold text-sm rounded-lg">
               Task ID: {id}
             </p>
-            <StatusTask
-              status={parseInt(showTask.completed as string)}
-            ></StatusTask>
+            <StatusTask status={showTask.completed}></StatusTask>
           </div>
 
           <p className="my-4 text-default">{showTask.todo}</p>
 
           <div className="flex justify-between items-center">
-            <Avatar
-              showName
-              id={
-                typeof showTask.userId === 'string'
-                  ? parseInt(showTask.userId)
-                  : showTask.userId
-              }
-            />
+            <Avatar showName id={showTask.userId} />
             <p className="bg-default text-white p-1 px-2 text-sm rounded-lg">
               Task Preview
             </p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(handleFormTask)}>
+        <form data-testid="form-task" onSubmit={handleSubmit(handleFormTask)}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Responsible
@@ -116,9 +109,11 @@ export default function AddOrEditModal({
             <select
               id="status"
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
+              data-testid="responsible-select"
               {...register('userId', {
                 required: true,
-                validate: (value) => value !== '0',
+                validate: (value) => value !== 0,
+                valueAsNumber: true,
               })}
             >
               <option key={0} value={0}>
@@ -138,11 +133,15 @@ export default function AddOrEditModal({
             <select
               id="status"
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
-              {...register('completed', { required: true })}
+              data-testid="status-select"
+              {...register('completed', {
+                required: true,
+                valueAsNumber: true,
+              })}
             >
-              <option value="0">Pending</option>
-              <option value="1">In Progress</option>
-              <option value="2">Completed</option>
+              <option value={0}>Pending</option>
+              <option value={1}>In Progress</option>
+              <option value={2}>Completed</option>
             </select>
           </div>
           <div className="mb-4">
@@ -153,12 +152,14 @@ export default function AddOrEditModal({
               className="shadow border border-gray-200 text-sm rounded-lg block w-full p-2.5"
               id="objective"
               placeholder="Write here"
+              data-testid="objective-select"
               {...register('todo', { required: true })}
             />
           </div>
           <button
             className="shadow px-4 py-2 w-fit text-white bg-default text-sm rounded-md font-medium flex items-center"
             type="submit"
+            data-testid="submit-button"
           >
             <img
               src={`/images/icon-${id ? `edit-white` : 'add'}.png`}

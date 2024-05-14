@@ -14,7 +14,7 @@ export default function ButtonAction({
   return (
     <div>
       <button
-        data-testid="button-edit"
+        data-testid="edit-button"
         className="pr-2"
         onClick={() => {
           setId(id)
@@ -29,7 +29,7 @@ export default function ButtonAction({
         ></img>
       </button>
       <button
-        data-testid="button-delete"
+        data-testid="delete-button"
         className="pr-2"
         onClick={() => {
           setId(id)

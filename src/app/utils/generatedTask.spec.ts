@@ -1,5 +1,5 @@
-import generateIdTask from './generateIdTask' // Adjust the import path as per your project structure
-import { ItemTaskProps } from '../models/types' // Adjust the import path for ItemTaskProps as per your project structure
+import generateIdTask from './generateIdTask'
+import { ItemTaskProps } from '../models/types'
 
 describe('generateIdTask function', () => {
   it('returns 1 when the list of tasks is empty', () => {

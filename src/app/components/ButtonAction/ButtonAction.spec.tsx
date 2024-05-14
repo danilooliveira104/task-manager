@@ -13,7 +13,7 @@ describe('KebabMenu', () => {
     jest.clearAllMocks()
   })
 
-  it('should call correct functions on button-edit click', () => {
+  it('should call correct functions on edit-button click', () => {
     const { getByTestId } = render(
       <ButtonAction
         id={1}
@@ -23,7 +23,7 @@ describe('KebabMenu', () => {
       />,
     )
 
-    const buttonEdit = getByTestId('button-edit')
+    const buttonEdit = getByTestId('edit-button')
     fireEvent.click(buttonEdit)
 
     expect(setId).toHaveBeenNthCalledWith(1, 1)
@@ -31,7 +31,7 @@ describe('KebabMenu', () => {
     expect(setAction).toHaveBeenNthCalledWith(1, 'edit')
   })
 
-  it('should call correct functions on button-delete click', () => {
+  it('should call correct functions on delete-button click', () => {
     const { getByTestId } = render(
       <ButtonAction
         id={1}
@@ -41,7 +41,7 @@ describe('KebabMenu', () => {
       />,
     )
 
-    const buttonDelete = getByTestId('button-delete')
+    const buttonDelete = getByTestId('delete-button')
     fireEvent.click(buttonDelete)
 
     expect(setId).toHaveBeenNthCalledWith(2, 1)
