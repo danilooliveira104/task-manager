@@ -1,18 +1,10 @@
 import React, { useState } from 'react'
 
 interface KebabMenuProps {
-  id: number
-  handleClick: (click: boolean) => void
-  setId: (id: number) => void
-  setAction: (action: 'edit' | 'delete') => void
+  handleClick: (click: boolean, edit: 'edit' | 'delete') => void
 }
 
-export default function KebabMenu({
-  id,
-  handleClick,
-  setAction,
-  setId,
-}: KebabMenuProps) {
+export default function KebabMenu({ handleClick }: KebabMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -51,9 +43,7 @@ export default function KebabMenu({
               className="flex w-full text-left px-4 py-3 text-sm text-gray-700"
               role="menuitem"
               onClick={() => {
-                setId(id)
-                handleClick(true)
-                setAction('edit')
+                handleClick(true, 'edit')
                 toggleMenu()
               }}
             >
@@ -69,9 +59,7 @@ export default function KebabMenu({
               className="flex w-full text-left px-4 py-3 text-sm text-gray-700"
               role="menuitem"
               onClick={() => {
-                setId(id)
-                handleClick(true)
-                setAction('delete')
+                handleClick(true, 'delete')
                 toggleMenu()
               }}
             >
