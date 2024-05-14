@@ -1,7 +1,7 @@
   <div align="center">
     <img alt="icon dashboard" src="./public/images/logo-icon.svg" width="100px"/> 
     <h1> 
-      Task Maneger
+      Task Manager
     </h1>
   </div>
   
@@ -22,14 +22,14 @@ A responsive web application for task management, offering an intuitive dashboar
 - [Zustand](https://www.typescriptlang.org/) ![Zustand](https://img.shields.io/badge/-Zustand-000?style=flat)
 ## 🎯 Objective
 
-The objective of this project is developer a modern resposive web app for tasks management. With an user-friendly interaface, where the users would can to view, add, edit and delete task efienetly
+The objective of this project is to develop a modern responsive web app for tasks management. With an user-friendly interface, where the users can view, add, edit and delete tasks efficiently
 
 ## 🔨 Features
 - [x] View tasks
-- [x] Add task
-- [x] Edit task
-- [x] Delete task
-- [x] Choose user assignee
+- [x] Add tasks
+- [x] Edit tasks
+- [x] Delete tasks
+- [x] Choose user assignment
 
 ## 📁 Project Estructure
 
@@ -83,4 +83,4 @@ yarn test
 
 Name: Danilo Oliveira Lima  
 LinkedIn: [Danilo Lima](https://www.linkedin.com/in/danilo-lima-a62aa91a0/)  
-Role: Desenvolvedor Web
+Role: Front-end developer

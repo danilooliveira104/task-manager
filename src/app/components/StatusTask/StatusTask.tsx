@@ -6,7 +6,6 @@ export default function StatusTask({ status }: StatusTaskProps) {
   let statusText
   let statusColor
 
-  // Mapeamento do número do status para texto e cor
   switch (status) {
     case 0:
       statusText = 'Pending'

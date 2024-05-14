@@ -1,11 +1,11 @@
 'use client'
-import useTask from '@/app/hooks/useTask/useTask'
+import useTask from '@hooks/useTask/useTask'
 import TaskList from '@components/TaskList/TaskList'
 import { useState } from 'react'
 import AddOrEditModal from '@components/AddOrEditModal/AddOrEditModal'
 
 export default function Dashboard() {
-  const { listTask } = useTask()
+  const { listTasks } = useTask()
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
 
@@ -24,12 +24,13 @@ export default function Dashboard() {
           <button
             onClick={() => setModalIsOpen(true)}
             className="shadow px-4 py-2 w-fit text-white bg-default text-sm rounded-md font-medium flex items-center"
+            data-testid="add-task-button"
           >
             <img src="/images/icon-add.png" alt="" className="pr-1 w-6" />
-            Add new task
+            Add task
           </button>
         </div>
-        <TaskList items={listTask} />
+        <TaskList items={listTasks} />
       </div>
     </>
   )
