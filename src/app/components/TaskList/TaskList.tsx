@@ -104,10 +104,11 @@ export default function TaskList({ items }: TaskListProps) {
                     data-testid="task-list-actions"
                   >
                     <ButtonAction
-                      id={item.id}
-                      handleClick={(isOpen) => setModalIsOpen(isOpen)}
-                      setId={(id) => setId(id)}
-                      setAction={(action) => setAction(action)}
+                      handleClick={(isOpen, action) => {
+                        setModalIsOpen(isOpen)
+                        setAction(action)
+                        setId(item.id)
+                      }}
                     />
                   </td>
                 </tr>
@@ -134,10 +135,11 @@ export default function TaskList({ items }: TaskListProps) {
               <div className="flex justify-between items-center">
                 <Avatar id={item.userId} showName={true} />
                 <KebabMenu
-                  id={item.id}
-                  handleClick={(isOpen) => setModalIsOpen(isOpen)}
-                  setId={(id) => setId(id)}
-                  setAction={(action) => setAction(action)}
+                  handleClick={(isOpen, action) => {
+                    setModalIsOpen(isOpen)
+                    setAction(action)
+                    setId(item.id)
+                  }}
                 />
               </div>
             </div>
