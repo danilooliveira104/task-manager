@@ -61,8 +61,6 @@ export default function AddOrEditModal({
         (ItemTaskProps: ItemTaskProps) => ItemTaskProps.id === id,
       )
 
-      console.log(taskToEdit)
-
       setValue('completed', taskToEdit?.completed ? taskToEdit.completed : 0)
       setValue('todo', taskToEdit?.todo ? taskToEdit?.todo : '')
       setValue('userId', taskToEdit?.userId ? taskToEdit?.userId : 0)
