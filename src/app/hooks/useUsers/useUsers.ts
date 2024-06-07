@@ -10,7 +10,7 @@ interface UseUserProps {
 }
 
 const useUsers = create<UseUserProps>((set) => {
-  fetch('https://dummyjson.com/users?limit=50').then((response) => {
+  fetch('https://dummyjson.com/users?limit=200').then((response) => {
     response.json().then((data) => {
       data.users.forEach((user: UserProps) => {
         set((state) => ({
